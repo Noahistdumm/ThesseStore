@@ -1,102 +1,20 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="utf-8">
-  <title>Game Downloads</title>
-  <style>
-    body { font-family: Arial; }
-    .hidden { display: none; }
-    button { margin-top: 5px; }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <meta name="apple-itunes-app" content="app-id=1625636043">
+    
+    <title>Block Blast</title>
+    <style>
+        body { font-family: sans-serif; padding: 20px; }
+    </style>
 </head>
 <body>
 
-<h1>Games installieren</h1>
-
-<!-- CODE EINGABE -->
-<h3>Code eingeben</h3>
-<input id="userCode" placeholder="Code eingeben">
-<button onclick="checkCode()">Freischalten</button>
-
-<p id="status"></p>
-
-<!-- DOWNLOADS -->
-<div id="downloads" class="hidden">
-  <p><a id="blockblast" href="https://apps.apple.com/us/app/block-blast/id1617391485">Block Blast installieren</a></p>
-  <p><a id="royale" href="https://apps.apple.com/us/app/clash-royale/id1053012308">Clash Royale installieren</a></p>
-  <p><a id="coc" href="https://apps.apple.com/us/app/clash-of-clans/id529479190">Clash of Clans installieren</a></p>
-  <p><a id="brawl" href="https://apps.apple.com/us/app/brawl-stars/id1229016807">Brawl Stars installieren</a></p>
-</div>
-
-<hr>
-
-<!-- ADMIN LOGIN -->
-<h3>Admin</h3>
-<input id="adminPw" type="password" placeholder="Admin Passwort">
-<button onclick="adminLogin()">Admin‑Modus</button>
-
-<!-- ADMIN PANEL -->
-<div id="adminPanel" class="hidden">
-  <h4>Code erstellen</h4>
-  <input id="newCode" placeholder="Neuer Code">
-  <select id="game">
-    <option value="blockblast">Block Blast</option>
-    <option value="royale">Clash Royale</option>
-    <option value="coc">Clash of Clans</option>
-    <option value="brawl">Brawl Stars</option>
-  </select>
-  <button onclick="createCode()">Code speichern</button>
-</div>
-
-<script>
-  let codes = JSON.parse(localStorage.getItem("codes") || "{}");
-
-  function checkCode() {
-    const code = document.getElementById("userCode").value;
-    const status = document.getElementById("status");
-
-    if (!codes[code]) {
-      status.innerText = "❌ Code ungültig oder schon benutzt";
-      return;
-    }
-
-    document.getElementById("downloads").classList.remove("hidden");
-
-    // alle Links verstecken
-    ["blockblast","royale","coc","brawl"].forEach(id => {
-      document.getElementById(id).style.display = "none";
-    });
-
-    // nur EIN Spiel freigeben
-    document.getElementById(codes[code]).style.display = "block";
-
-    delete codes[code]; // EINMAL BENUTZBAR
-    localStorage.setItem("codes", JSON.stringify(codes));
-
-    status.innerText = "✅ Download freigeschaltet";
-  }
-
-  function adminLogin() {
-    const pw = document.getElementById("adminPw").value;
-    if (pw === "ATGaming1906!") {
-      document.getElementById("adminPanel").classList.remove("hidden");
-      alert("Admin‑Modus aktiviert 😈");
-    } else {
-      alert("Falsches Passwort bro");
-    }
-  }
-
-  function createCode() {
-    const code = document.getElementById("newCode").value;
-    const game = document.getElementById("game").value;
-
-    if (!code) return alert("Code fehlt");
-
-    codes[code] = game;
-    localStorage.setItem("codes", JSON.stringify(codes));
-    alert("Code erstellt: " + code);
-  }
-</script>
+    <h1>Block Blast spielen</h1>
+    <p>Wenn du ein iPhone oder iPad nutzt, solltest du oben die Leiste zum Herunterladen sehen.</p>
 
 </body>
 </html>
